@@ -1,8 +1,7 @@
-﻿## P1
+﻿## P1 - TextSentiment
 
-## P2 
 
-### HybridSVD Model (vs. Original SVD)
+## P2 - HybridSVD Model (vs. Original SVD)
 
 https://paperswithcode.com/paper/hybridsvd-when-collaborative-information-is
 
