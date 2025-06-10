@@ -5,44 +5,44 @@
 
 https://paperswithcode.com/paper/hybridsvd-when-collaborative-information-is
 
-#### 1. Introduction
+#### 1. 소개
 
-**SVD** is a well-known SVD-based collaborative filtering method. While it offers speed and simplicity, it suffers from critical limitations—especially when user-item interactions are sparse or when new users/items appear (cold start problem).  
-**HybridSVD** addresses these limitations by incorporating side information (e.g., user attributes or item features) into the SVD framework without sacrificing computational efficiency.
+**SVD**는 잘 알려진 SVD 기반 협업 필터링 방법입니다. 빠르고 단순하다는 장점이 있지만, 사용자-아이템 상호작용이 희박하거나 새로운 사용자/아이템이 등장할 때(콜드 스타트 문제) 치명적인 한계가 있습니다.  
+**HybridSVD**는 부가적인 정보(예: 사용자 속성이나 아이템 특징)를 SVD 프레임워크에 결합하여 계산 효율성을 유지하면서 이러한 한계를 극복합니다.
 
-#### 2. Key Differences
+#### 2. 주요 차이점
 
-| Aspect                     | PureSVD                                      | HybridSVD                                                      |
+| 항목                       | PureSVD                                      | HybridSVD                                                      |
 |---------------------------|----------------------------------------------|----------------------------------------------------------------|
-| Uses side information     | ❌ No                                         | ✅ Yes                                                         |
-| Cold start support        | ❌ Weak                                       | ✅ Strong (through feature mapping)                            |
-| Flexibility of latent space | ❌ Fixed (cosine-based latent space)         | ✅ Adaptive (informed by user/item similarity)                 |
-| Complexity                | ✅ Simple and efficient                       | ✅ Slightly more complex, but optimized via Cholesky methods   |
-| Folding-in (online update) | ✅ Supported                                  | ✅ Supported, with enhanced latent space                        |
-| Parameter tuning          | ✅ Easy (rank truncation)                     | ✅ Easy (same with additional α, β parameters)                 |
+| 부가 정보 사용             | ❌ 아니오                                     | ✅ 예                                                          |
+| 콜드 스타트 지원           | ❌ 약함                                      | ✅ 강함 (특징 매핑을 통해)                                     |
+| 잠재 공간 유연성           | ❌ 고정 (코사인 기반 잠재 공간)               | ✅ 적응형 (유저/아이템 유사도 반영)                            |
+| 복잡도                    | ✅ 단순하고 효율적                            | ✅ 약간 더 복잡하지만 Cholesky 방법으로 최적화                  |
+| 폴딩인(온라인 업데이트)    | ✅ 지원                                       | ✅ 지원, 향상된 잠재 공간                                      |
+| 파라미터 튜닝              | ✅ 쉬움 (랭크 트렁케이션)                      | ✅ 쉬움 (추가 α, β 파라미터 포함)                              |
 
 
-#### 3. Advantages of HybridSVD
+#### 3. HybridSVD의 장점
 
-**Incorporates Side Information**
+**부가 정보 결합**
 
-By modeling auxiliary similarities between users and items, HybridSVD can utilize genres, brands, demographic attributes, etc.
+사용자와 아이템 간의 보조 유사도를 모델링함으로써 HybridSVD는 장르, 브랜드, 인구통계 속성 등 다양한 정보를 활용할 수 있습니다.
 
-**Solves the Cold Start Problem**
+**콜드 스타트 문제 해결**
 
-HybridSVD learns mappings from features to latent vectors, allowing recommendation even when no interaction history exists.
+HybridSVD는 특징에서 잠재 벡터로의 매핑을 학습하여, 상호작용 이력이 없어도 추천이 가능합니다.
 
-**Retains PureSVD Strengths**
+**PureSVD의 강점 유지**
 
-It keeps fast convergence, rank truncation, folding-in, and compatibility with sparse data.
+빠른 수렴, 랭크 트렁케이션, 폴딩인, 희소 데이터 호환성을 그대로 유지합니다.
 
 
-#### 4. When to Use HybridSVD
+#### 4. HybridSVD를 사용할 때
 
-- The dataset is sparse (e.g., e-commerce with many items but few purchases)
-- Cold start items or users are common
-- Side information is rich and reliable
-- Real-time recommendation is required
+- 데이터셋이 희박할 때(예: 상품은 많고 구매는 적은 이커머스)
+- 콜드 스타트 아이템이나 사용자가 많을 때
+- 부가 정보가 풍부하고 신뢰할 수 있을 때
+- 실시간 추천이 필요할 때
 
 
 
@@ -54,24 +54,24 @@ It keeps fast convergence, rank truncation, folding-in, and compatibility with s
 
 
 
-###  Item Collaborative Filtering
+###  아이템 기반 협업 필터링
 
-Suppose user **A** has watched the movies "E.T." and "Indiana Jones."
+사용자 **A**가 "E.T."와 "Indiana Jones" 영화를 봤다고 가정해봅시다.
 
-- Traditional item-based collaborative filtering (ICF) recommends movies to **A** based on what other users with similar viewing histories have also watched.
-- In other words, recommendations are based solely on *co-viewing patterns*:
-  > "People who watched these movies also watched..."
+- 전통적인 아이템 기반 협업 필터링(ICF)은 **A**와 비슷한 시청 이력을 가진 다른 사용자들이 본 영화를 기반으로 **A**에게 영화를 추천합니다.
+- 즉, 추천은 오직 *공동 시청 패턴*에 기반합니다:
+  > "이 영화를 본 사람들은 이런 영화도 봤어요..."
 
 
-### But RCF ->  Leveraging Multiple Item Relations
+### 하지만 RCF -> 다양한 아이템 관계 활용
 
-**RCF (Relational Collaborative Filtering)** is a recommender system framework that leverages multiple item relations, going beyond the traditional collaborative filtering approach. Below, you'll find a clear markdown explanation with real-world examples.
+**RCF(관계 기반 협업 필터링)**는 전통적인 협업 필터링을 넘어, 여러 아이템 간 관계를 활용하는 추천 시스템 프레임워크입니다. 아래에 실제 예시와 함께 마크다운 설명을 제공합니다.
 
-RCF doesn't just look at co-viewing. It considers various explicit relationships between items (movies, songs, etc.), such as:
+RCF는 단순히 공동 시청만 보는 것이 아니라, 아이템(영화, 음악 등) 간의 다양한 명시적 관계를 고려합니다. 예를 들어:
 
-- **Same director:** "E.T." and "Schindler's List" are both directed by Steven Spielberg.
-- **Same genre:** "E.T." and "The Avengers" are both science fiction.
-- **Same actor:** "E.T." and another movie might share an actor.
+- **같은 감독:** "E.T."와 "Schindler's List"는 모두 Steven Spielberg 감독 작품
+- **같은 장르:** "E.T."와 "The Avengers"는 모두 SF
+- **같은 배우:** "E.T."와 또 다른 영화가 같은 배우를 공유할 수 있음
 
 
 .
@@ -81,43 +81,42 @@ RCF doesn't just look at co-viewing. It considers various explicit relationships
 .
 
 
-#### Movie Recommendation Example
+#### 영화 추천 예시
 
 
 
-##### Scenario
+##### 시나리오
 
-User **B** has watched "E.T."  
-There are several possible relations between "E.T." and other movies:
+사용자 **B**가 "E.T."를 시청했습니다.  
+"E.T."와 다른 영화 사이에는 여러 관계가 있을 수 있습니다:
 
-- **Director:** "E.T." and "Schindler's List" (both by Spielberg)
-- **Genre:** "E.T." and "The Avengers" (both science fiction)
-- **Actor:** "E.T." and another movie with the same actor
+- **감독:** "E.T."와 "Schindler's List"(둘 다 Spielberg 감독)
+- **장르:** "E.T."와 "The Avengers"(둘 다 SF)
+- **배우:** "E.T."와 같은 배우가 출연한 다른 영화
 
-##### How RCF Recommends
+##### RCF 추천 방식
 
-1. **Classify by relation type:** Identify all possible relations (director, genre, actor, etc.) between "E.T." and candidate movies.
-2. **First-level attention:** Determine which relation types matter most to user **B**.
-   - For example, if **B** cares more about genre, movies with the same genre as "E.T." get higher weight.
-3. **Second-level attention:** Within each relation type, assess which specific values (e.g., "science fiction" vs. "action") or which directors/actors are most relevant to **B**.
-   - If **B** especially likes science fiction, those movies are prioritized.
-4. **Final recommendation:** Combine **B**'s interaction history and their relation-based preferences to recommend, for example, "The Avengers" (same genre) or "Schindler's List" (same director).
+1. **관계 유형 분류:** 후보 영화와 "E.T." 사이의 모든 관계(감독, 장르, 배우 등)를 식별합니다.
+2. **1차 주의(attention):** 사용자 **B**에게 어떤 관계 유형이 중요한지 판단합니다.
+   - 예를 들어, **B**가 장르를 더 중요하게 생각하면 같은 장르 영화에 더 높은 가중치를 부여합니다.
+3. **2차 주의(attention):** 각 관계 유형 내에서 어떤 값(예: "SF" vs "액션")이나 어떤 감독/배우가 **B**에게 더 중요한지 평가합니다.
+   - **B**가 특히 SF를 좋아한다면, 해당 장르 영화가 우선 추천됩니다.
+4. **최종 추천:** **B**의 상호작용 이력과 관계 기반 선호도를 결합해, 예를 들어 "The Avengers"(같은 장르)나 "Schindler's List"(같은 감독)를 추천합니다.
 
-##### Example Recommendation Explanations
+##### 추천 설명 예시
 
-- Recommending "The Avengers":
-  > "Recommended because both 'E.T.' and 'The Avengers' are science fiction movies you like."
-- Recommending "Schindler's List":
-  > "Recommended because you like movies directed by Steven Spielberg."
+- "The Avengers" 추천:
+  > "'E.T.'와 'The Avengers' 모두 당신이 좋아하는 SF 영화이기 때문에 추천합니다."
+- "Schindler's List" 추천:
+  > "당신이 Steven Spielberg 감독의 영화를 좋아하기 때문에 추천합니다."
 
-RCF thus provides both personalized recommendations and clear explanations based on diverse item relations.
+RCF는 이렇게 다양한 아이템 관계를 바탕으로 개인화된 추천과 명확한 설명을 모두 제공합니다.
 
-### Summary Table: ICF vs. RCF
+### 요약 표: ICF vs. RCF
 
-| Aspect                | Traditional ICF                              | RCF (Relational Collaborative Filtering)                |
-|-----------------------|----------------------------------------------|--------------------------------------------------------|
-| Main signal           | Co-viewed/co-purchased items                 | Multiple explicit item relations (director, genre, etc.)|
-| Personalization       | Based on similar users or items              | Based on user-specific relation preferences            |
-| Explanation           | Limited ("People also watched...")           | Rich ("Same director/genre as movies you liked")       |
-| Example               | "People who watched X also watched Y"        | "Recommended because both are sci-fi movies"           |
-
+| 항목                | 전통적 ICF                                   | RCF(관계 기반 협업 필터링)                       |
+|---------------------|----------------------------------------------|--------------------------------------------------|
+| 주요 신호           | 공동 시청/공동 구매 아이템                   | 여러 명시적 아이템 관계(감독, 장르 등)            |
+| 개인화              | 비슷한 사용자 또는 아이템 기반                | 사용자별 관계 선호도 기반                        |
+| 설명력              | 제한적 ("다른 사람들도 봤어요")               | 풍부함 ("당신이 좋아한 영화와 같은 감독/장르")    |
+| 예시                | "X를 본 사람들은 Y도 봤어요"                  | "둘 다 SF 영화라서 추천합니다"                   |
