@@ -43,6 +43,8 @@ https://paperswithcode.com/paper/hybridsvd-when-collaborative-information-is
 
 ## P4 - RCF[관계형 협업 필터링]
 
+https://paperswithcode.com/paper/relational-collaborative-filteringmodeling
+
 ####  아이템 기반 협업 필터링(ICF)
 
 사용자 **A**가 "E.T."와 "Indiana Jones" 영화를 봤다고 가정해봅시다.
