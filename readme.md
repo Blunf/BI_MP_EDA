@@ -67,6 +67,15 @@ https://paperswithcode.com/paper/hybridsvd-when-collaborative-information-is
 
 .
 
+## P3 - Item2Vec (AssociationRuleMining)
+
+https://paperswithcode.com/paper/item2vec-neural-item-embedding-for
+
+
+.
+
+.
+
 ## P4 - RCF[관계형 협업 필터링]
 
 https://paperswithcode.com/paper/relational-collaborative-filteringmodeling
